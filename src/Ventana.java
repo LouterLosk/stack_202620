@@ -10,6 +10,7 @@ public class Ventana {
     private JButton btnSima;
     private JButton btnMostrar;
     private JTextArea txtListar;
+    private JButton likeButton;
     private Pila pila1 = new Pila();
 
     public Ventana() {
@@ -53,6 +54,19 @@ public class Ventana {
             @Override
             public void actionPerformed(ActionEvent e) {
                 txtListar.setText(pila1.showAll());
+            }
+        });
+
+        likeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Post aux = pila1.peek();
+                    aux.like();
+                    txtListar.setText(pila1.showAll());
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
             }
         });
     }
