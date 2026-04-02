@@ -29,4 +29,12 @@ public class Pila {
         }
         return resultado.length()!=0?resultado:"No hay elementos en la pila" ;
     }
+
+
+    public void deleteAll() throws Exception {
+        if (objPila.isEmpty()) {
+            throw new Exception("No hay elementos en la pila");
+        }
+        objPila.clear();
+    }
 }

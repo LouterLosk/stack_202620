@@ -11,6 +11,7 @@ public class Ventana {
     private JButton btnMostrar;
     private JTextArea txtListar;
     private JButton likeButton;
+    private JButton btnReset;
     private Pila pila1 = new Pila();
 
     public Ventana() {
@@ -64,6 +65,17 @@ public class Ventana {
                     Post aux = pila1.peek();
                     aux.like();
                     txtListar.setText(pila1.showAll());
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    pila1.deleteAll();
+                    txtListar.setText("");
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
