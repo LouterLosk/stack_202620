@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,20 +12,23 @@ public class Ventana {
     private JButton btnMostrar;
     private JTextArea txtListar;
     private JButton likeButton;
-    private JButton btnReset;
+    private JButton btnDeleteAll;
     private Pila pila1 = new Pila();
 
     public Ventana() {
+
+        /**Insert**/
         btnInsertar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String url = txtUrl.getText();
+                if (url.isEmpty()) {return;}
                 Post obj = new Post(url);
                 pila1.push(obj);
                 txtListar.setText(pila1.showAll());
             }
         });
-
+        /**POP**/
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,12 +43,14 @@ public class Ventana {
             }
 
         });
+
+        /**Peek**/
         btnSima.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     Post cima =pila1.peek();
-                    txtListar.setText("La cima es: "+cima.toString());
+                    JOptionPane.showMessageDialog(null, "La cima es: " + cima.toString());
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
@@ -70,7 +76,7 @@ public class Ventana {
                 }
             }
         });
-        btnReset.addActionListener(new ActionListener() {
+        btnDeleteAll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -86,8 +92,9 @@ public class Ventana {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Ventana");
         frame.setContentPane(new Ventana().panel);
+        frame.setPreferredSize(new Dimension(300, 400));
+        frame.pack(); // ajusta al tamaño preferido
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
         frame.setVisible(true);
     }
 }

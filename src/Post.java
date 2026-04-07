@@ -43,7 +43,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return  "url: " + url + " liks: " + contLiks + ", fecha= " +
+        return  "url: " + url + " likes: " + contLiks + ", fecha= " +
                 fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))+"\n";
     }
 
